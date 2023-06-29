@@ -45,10 +45,10 @@ fun main(args: Array<String>) {
     val container = ctx.getBean(RedisMessageListenerContainer::class.java)
     val listenerAdapter = ctx.getBean(MessageListenerAdapter::class.java)
 
-    // adding message listener before container initialization. (subscribe redis)
+    // adding message listener before container's listener initialization. (subscribe redis)
     container.addMessageListener(listenerAdapter, ChannelTopic("first chat"))
 
-    // adding message listener after container initialization. (subscribe redis)
+    // adding message listener after container's listener initialization. (subscribe redis)
     container.addMessageListener(listenerAdapter, ChannelTopic("second chat"))
 
     val template = ctx.getBean(StringRedisTemplate::class.java)
